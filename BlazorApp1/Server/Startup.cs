@@ -30,14 +30,7 @@ namespace BlazorApp1.Server
 
             services.AddGraphQL(SchemaBuilder.New()
                 .AddQueryType<Query>()
-                .Create(),
-                new QueryExecutionOptions
-                {
-                    ForceSerialExecution = true,
-                    IncludeExceptionDetails = true,
-                    // TODO: Submit a feature request on Hot Chocolate's GitHub repository for an option that would disallow useless cyclical queries, I mean queries like "author { books { author { } } }" shouldn't be possible since the "author" is already on the previous level and you can query it.
-                    // MaxExecutionDepth = int.Parse(Configuration["MaxAllowedQueryDepth"]) + 1 // We should add 1 to this specifically for Hot Chocolate since it disallows the number itself too, which is not what we want, we want any number higher than the number to be disallowed but not the number itself.
-                });
+                .Create());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
